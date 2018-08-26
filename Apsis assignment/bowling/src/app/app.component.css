@@ -1,0 +1,22 @@
+nav{
+  background-color: rgb(55, 162, 197);
+  color: aliceblue;
+  margin: 0;
+}
+
+a{
+  color: aliceblue;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: aliceblue;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
+  color: black
+}
+
+#appBody{
+  background: url("../assets/images/bowling.png")no-repeat center fixed;
+  background-size: 40%;
+}

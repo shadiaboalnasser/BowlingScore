@@ -1,0 +1,68 @@
+<div id='title' class='title'><h1>Bowling Scoresheet</h1></div>
+
+<div class="container inputs">
+  <form class="form" #frameForm="ngForm" (ngSubmit)="onSubmit(frameForm.value)" autocomplete="off" novalidate>
+    <div class="row">
+      <h4>Submit scores for the current frame:</h4>
+    </div>
+    <em *ngIf="outOfRange">Invalid Inputs</em>
+    <div class="row roll">
+      <div class="input-group">
+        <span class="input-group-addon">First Score</span>
+        <input (ngModel)="frames[activeFrame]?.firstRoll" name="firstRoll" type="number" class="form-control first"
+               placeholder="e.g. 8" min="0" max="10" required>
+      </div>
+    </div>
+    <div class="row roll" *ngIf="frames[activeFrame]?.firstRoll !== 10">
+      <div class="input-group">
+        <span class="input-group-addon">Second Score</span>
+        <input (ngModel)="frames[activeFrame].secondRoll" name="secondRoll" type="number" class="form-control second"
+               placeholder="e.g. 2" min="0" max="10" required>
+      </div>
+    </div>
+    <div *ngIf="activeFrame === 9" class="row roll">
+      <div class="input-group">
+        <span class="input-group-addon">Third Score</span>
+        <input (ngModel)="frames[activeFrame]?.thirdRoll" name="thirdRoll" type="number" class="form-control third"
+               placeholder="e.g. 10" min="0" max="10" required>
+      </div>
+    </div>
+    <div class="row buttons">
+      <button type="reset" class="btn col-md-6 col-xs-6 btn-danger">Reset</button>
+      <button type="submit" class="btn col-md-6 col-xs-6 btn-success">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div id='scoresheet'>
+  <table id='scoresheetTable' class='scoresheet' cellpadding='1' cellspacing='0'>
+    <tr>
+      <th colspan='6' *ngFor="let frame of frames; let i = index">Frame {{i+1}}</th>
+      <th colspan='6'>Score</th>
+    </tr>
+    <tr>
+      <td colspan='3'>{{displayValue(frames[0],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[0],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[1],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[1],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[2],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[2],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[3],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[3],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[4],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[4],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[5],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[5],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[6],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[6],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[7],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[7],2)}}</td>
+      <td colspan='3'>{{displayValue(frames[8],1)}}</td>
+      <td colspan='3'>{{displayValue(frames[8],2)}}</td>
+      <td colspan='2'>{{displayValue(frames[9],1)}}</td>
+      <td colspan='2'>{{displayValue(frames[9],2)}}</td>
+      <td colspan='2'>{{displayValue(frames[9],3)}}</td>
+      <td colspan="6">{{score}}</td>
+    </tr>
+  </table>
+</div>
